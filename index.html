@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pompe Connectée - Tableau de Bord</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pompe Connectée</h1>
+            <p class="subtitle">Tableau de bord de surveillance</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="card status-card">
+                <div class="card-header">
+                    <h2>État de la Pompe</h2>
+                </div>
+                <div class="card-body">
+                    <div class="status-indicator">
+                        <div class="status-circle" id="status-circle"></div>
+                        <span id="status-text">Chargement...</span>
+                    </div>
+                    <button id="toggle-btn" class="action-btn">
+                        <i class="fas fa-power-off"></i>
+                        <span>Démarrer</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card timer-card">
+                <div class="card-header">
+                    <h2>Temps de Fonctionnement</h2>
+                </div>
+                <div class="card-body">
+                    <div class="timer" id="timer">00:00:00</div>
+                    <div class="timer-label">Heures : Minutes : Secondes</div>
+                </div>
+            </div>
+
+            <div class="card metrics-card">
+                <div class="card-header">
+                    <h2>Métriques</h2>
+                </div>
+                <div class="card-body">
+                    <div class="metric">
+                        <div class="metric-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Débit</span>
+                            <span class="metric-value" id="flow-rate">--</span>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Température</span>
+                            <span class="metric-value" id="temperature">--</span>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Puissance</span>
+                            <span class="metric-value" id="power">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card history-card">
+                <div class="card-header">
+                    <h2>Historique</h2>
+                </div>
+                <div class="card-body">
+                    <div class="history-list" id="history-list">
+                        <div class="history-item">Chargement de l'historique...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
