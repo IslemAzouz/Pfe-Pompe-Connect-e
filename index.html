@@ -10,8 +10,16 @@
 <body>
     <div class="container">
         <header>
-            <h1>Pompe Connectée</h1>
-            <p class="subtitle">Tableau de bord de surveillance</p>
+            <div class="header-content">
+                <div class="header-main">
+                    <h1>Pompe Connectée</h1>
+                    <p class="subtitle">Tableau de bord de surveillance</p>
+                </div>
+                <div class="header-credit">
+                    <p class="project-info">Projet de fin d'études</p>
+                    <p class="author-name">par Ameni Bouafia</p>
+                </div>
+            </div>
         </header>
 
         <div class="dashboard">
@@ -72,6 +80,17 @@
                             <span class="metric-label">Puissance</span>
                             <span class="metric-value" id="power">--</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card emergency-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Arrêts d'Urgence</h2>
+                </div>
+                <div class="card-body">
+                    <div class="emergency-list" id="emergency-list">
+                        <div class="emergency-item">Chargement des arrêts d'urgence...</div>
                     </div>
                 </div>
             </div>
