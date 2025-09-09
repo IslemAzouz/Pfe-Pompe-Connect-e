@@ -220,21 +220,22 @@ function setupFirebaseListeners() {
     });
     
     // Écouter les métriques
-    database.ref('metrics').on('value', snapshot => {
-        const metrics = snapshot.val() || {};
-        
-        if (metrics.flowRate !== undefined) {
-            flowRateElement.textContent = `${metrics.flowRate} L/min`;
-        }
-        
-        if (metrics.temperature !== undefined) {
-            temperatureElement.textContent = `${metrics.temperature} °C`;
-        }
-        
-        if (metrics.power !== undefined) {
-            powerElement.textContent = `${metrics.power} W`;
-        }
-    });
+database.ref('sensors').on('value', snapshot => {
+    const sensors = snapshot.val() || {};
+    
+    if (sensors.aspirationPressure !== undefined) {
+        document.getElementById('aspiration-pressure').textContent = `${sensors.aspirationPressure} bar`;
+    }
+    
+    if (sensors.refoulementPressure !== undefined) {
+        document.getElementById('refoulement-pressure').textContent = `${sensors.refoulementPressure} bar`;
+    }
+    
+    if (sensors.phaseStatus !== undefined) {
+        document.getElementById('phase-status').textContent = sensors.phaseStatus;
+    }
+});
+
     
     // Écouter les arrêts d'urgence
     database.ref('emergency_stops').orderByChild('timestamp').limitToLast(10).on('value', snapshot => {

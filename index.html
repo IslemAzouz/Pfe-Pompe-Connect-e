@@ -49,40 +49,41 @@
                 </div>
             </div>
 
-            <div class="card metrics-card">
-                <div class="card-header">
-                    <h2>Métriques</h2>
-                </div>
-                <div class="card-body">
-                    <div class="metric">
-                        <div class="metric-icon">
-                            <i class="fas fa-tachometer-alt"></i>
-                        </div>
-                        <div class="metric-info">
-                            <span class="metric-label">Débit</span>
-                            <span class="metric-value" id="flow-rate">--</span>
-                        </div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-icon">
-                            <i class="fas fa-temperature-high"></i>
-                        </div>
-                        <div class="metric-info">
-                            <span class="metric-label">Température</span>
-                            <span class="metric-value" id="temperature">--</span>
-                        </div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="metric-info">
-                            <span class="metric-label">Puissance</span>
-                            <span class="metric-value" id="power">--</span>
-                        </div>
-                    </div>
-                </div>
+<div class="card sensors-card">
+    <div class="card-header">
+        <h2>Capteurs</h2>
+    </div>
+    <div class="card-body">
+        <div class="metric">
+            <div class="metric-icon">
+                <i class="fas fa-tachometer-alt"></i>
             </div>
+            <div class="metric-info">
+                <span class="metric-label">Pression Aspiration</span>
+                <span class="metric-value" id="aspiration-pressure">--</span>
+            </div>
+        </div>
+        <div class="metric">
+            <div class="metric-icon">
+                <i class="fas fa-plug"></i>
+            </div>
+            <div class="metric-info">
+                <span class="metric-label">Pression Refoulement</span>
+                <span class="metric-value" id="refoulement-pressure">--</span>
+            </div>
+        </div>
+        <div class="metric">
+            <div class="metric-icon">
+                <i class="fas fa-bolt-lightning"></i>
+            </div>
+            <div class="metric-info">
+                <span class="metric-label">État Phases</span>
+                <span class="metric-value" id="phase-status">--</span>
+            </div>
+        </div>
+    </div>
+</div>
+
 
             <div class="card emergency-card">
                 <div class="card-header">

@@ -125,7 +125,7 @@ h1 {
     grid-column: span 3;
 }
 
-.metrics-card {
+.sensors-card {
     grid-column: span 6;
 }
 
@@ -253,7 +253,7 @@ h1 {
 }
 
 /* Metrics Card */
-.metrics-card .card-body {
+.sensors-card .card-body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -449,7 +449,7 @@ h1 {
         grid-column: span 4;
     }
     
-    .metrics-card {
+    .sensors-card {
         grid-column: span 8;
     }
     
@@ -470,13 +470,13 @@ h1 {
     
     .status-card,
     .timer-card,
-    .metrics-card,
+    .sensors-card,
     .emergency-card,
     .history-card {
         grid-column: span 1;
     }
     
-    .metrics-card .card-body {
+    .sensors-card .card-body {
         grid-template-columns: 1fr;
         gap: 16px;
     }
