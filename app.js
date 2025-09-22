@@ -237,68 +237,68 @@ database.ref('sensors').on('value', snapshot => {
 });
 
     
-    // Écouter les arrêts d'urgence
-    database.ref('emergency_stops').orderByChild('timestamp').limitToLast(10).on('value', snapshot => {
-        emergencyListElement.innerHTML = '';
-        
-        const emergencyStops = snapshot.val() || {};
-        const entries = Object.entries(emergencyStops);
-        
-        if (entries.length === 0) {
-            const emptyItem = document.createElement('div');
-            emptyItem.className = 'emergency-item';
-            emptyItem.innerHTML = `
-                <div class="emergency-content">
-                    <div class="emergency-reason">Aucun arrêt d'urgence enregistré</div>
-                </div>
-            `;
-            emergencyListElement.appendChild(emptyItem);
-            return;
-        }
-        
-        // Trier par timestamp décroissant
-        entries.sort((a, b) => b[1].timestamp - a[1].timestamp);
-        
-        // Vérifier s'il y a un arrêt d'urgence récent (moins de 5 minutes)
-        const now = Date.now();
-        const recentStop = entries.find(([key, data]) => {
-            return (now - data.timestamp) < 300000; // 5 minutes
-        });
-        
-        if (recentStop && !hasRecentEmergencyStop) {
-            hasRecentEmergencyStop = true;
-            showEmergencyAlert(recentStop[1].reason);
-            
-            // Réinitialiser après 5 minutes
-            setTimeout(() => {
-                hasRecentEmergencyStop = false;
-            }, 300000);
-        }
-        
-        entries.forEach(([key, data]) => {
-            const emergencyItem = document.createElement('div');
-            emergencyItem.className = 'emergency-item';
-            
-            // Vérifier si c'est un arrêt récent (moins d'une heure)
-            const isRecent = (now - data.timestamp) < 3600000; // 1 heure
-            
-            emergencyItem.innerHTML = `
-                <i class="fas fa-exclamation-triangle emergency-icon"></i>
-                <div class="emergency-content">
-                    <div class="emergency-reason">${data.reason}</div>
-                    <div class="emergency-time">${formatTimestampToDate(data.timestamp)}</div>
-                </div>
-            `;
-            
-            if (isRecent) {
-                emergencyItem.style.borderLeftColor = '#dc2626';
-                emergencyItem.style.backgroundColor = '#fee2e2';
-            }
-            
-            emergencyListElement.appendChild(emergencyItem);
-        });
+   // Écouter les alarmes
+database.ref('alarms').orderByChild('timestamp').limitToLast(10).on('value', snapshot => {
+    emergencyListElement.innerHTML = '';
+    
+    const alarms = snapshot.val() || {};
+    const entries = Object.entries(alarms);
+    
+    if (entries.length === 0) {
+        const emptyItem = document.createElement('div');
+        emptyItem.className = 'emergency-item';
+        emptyItem.innerHTML = `
+            <div class="emergency-content">
+                <div class="emergency-reason">Aucune alarme enregistrée</div>
+            </div>
+        `;
+        emergencyListElement.appendChild(emptyItem);
+        return;
+    }
+    
+    // Trier par timestamp décroissant
+    entries.sort((a, b) => b[1].timestamp - a[1].timestamp);
+    
+    // Vérifier s'il y a une alarme récente (moins de 5 minutes)
+    const now = Date.now();
+    const recentAlarm = entries.find(([key, data]) => {
+        return (now - data.timestamp) < 300000; // 5 minutes
     });
     
+    if (recentAlarm && !hasRecentEmergencyStop) {
+        hasRecentEmergencyStop = true;
+        showEmergencyAlert(recentAlarm[1].reason || recentAlarm[1].message);
+        
+        // Réinitialiser après 5 minutes
+        setTimeout(() => {
+            hasRecentEmergencyStop = false;
+        }, 300000);
+    }
+    
+    entries.forEach(([key, data]) => {
+        const alarmItem = document.createElement('div');
+        alarmItem.className = 'emergency-item';
+        
+        // Vérifier si c'est une alarme récente (moins d'une heure)
+        const isRecent = (now - data.timestamp) < 3600000; // 1 heure
+        
+        alarmItem.innerHTML = `
+            <i class="fas fa-exclamation-triangle emergency-icon"></i>
+            <div class="emergency-content">
+                <div class="emergency-reason">${data.reason || data.message}</div>
+                <div class="emergency-time">${formatTimestampToDate(data.timestamp)}</div>
+            </div>
+        `;
+        
+        if (isRecent) {
+            alarmItem.style.borderLeftColor = '#dc2626';
+            alarmItem.style.backgroundColor = '#fee2e2';
+        }
+        
+        emergencyListElement.appendChild(alarmItem);
+    });
+});
+
     // Charger l'historique
     database.ref('history').orderByChild('timestamp').limitToLast(15).on('value', snapshot => {
         historyListElement.innerHTML = '';
